@@ -1,5 +1,5 @@
 CC := g++
-CFLAGS := -Wall -lncurses
+CFLAGS := -Wall
 
 SRCFILES := $(wildcard src/*.cpp)
 
@@ -7,7 +7,7 @@ all: $(SRCFILES:src/%.cpp=obj/%.o)
 	$(CC) $(CFLAGS) obj/*.o -o bin/saida -lncurses
 
 obj/%.o : src/%.cpp
-	$(CC) $(CFLAGS) -c $< -o $@ -I./inc -lncurses
+	$(CC) $(CFLAGS) -c $< -o $@ -I./inc
 
 .PHONY: clean
 clean:

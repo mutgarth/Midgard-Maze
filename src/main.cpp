@@ -3,27 +3,39 @@
 #include "player.hpp"
 #include "map.hpp"
 #include <iostream>
-#include <stdio.h>
 #include <ncurses.h>
 #include <unistd.h>
+#include <string>
+#include <stdlib.h>
 
 
 using namespace std;
 
 int main(int argc, char** argv) {
+
   initscr();
   noecho();
 
-  Player player_1;
-  Map mapa_1;
-  mapa_1.importMap();
-  Draw draw;
-  draw.drawMap(mapa_1);
-  //
-  // while(1){
-  //   player_1.movePlayer();
-  //   refresh();
-  // }
+  Player  * player = new Player();
+  Map * mapa = new Map();
+  mapa->importMap();
+  mapa->drawPlayer(player->getSprite(), player->getPositionX(), player->getPositionY());
+  mapa->getMap();
+
+    while(1){
+
+      mapa->importMap();
+      player->movePlayer(mapa);
+      mapa->drawPlayer(player->getSprite(), player->getPositionX(), player->getPositionY());
+
+      refresh();
+      clear();
+      mapa->getMap();
+
+
+  }
+
   endwin();
+
   return 0;
 }

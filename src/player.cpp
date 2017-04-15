@@ -3,16 +3,14 @@
 #include <ncurses.h>
 #include <unistd.h>
 
-int direction = 1;
-
+// Constructor method
 Player::Player(){
-  setSprite("@");
-  setPositionX(0);
-  setPositionY(0);
-  setNextPositionX(0);
-  setNextPositionY(0);
+  setSprite('@');
+  setPositionX(1);
+  setPositionY(1);
   setLife(100);
 }
+
 
 Player::~Player(){};
 
@@ -24,70 +22,43 @@ int Player::getLife(){
   return life;
 }
 
-void Player::setNextPositionX(int next_positionX){
-  this->next_positionX = next_positionX;
+// Method to move the player through map
+void Player::movePlayer(Map *mapa){
+
+  char key;
+  key = getch();
+
+  if(key == 'w'){
+    if(mapa->getCharacter(getPositionY()-1,getPositionX()) == '='){
+      setPositionY(getPositionY());
+    } else {
+  		  this->setPositionY(getPositionY()-1);
+      }
+
+    } else if (key == 's'){
+      if(mapa->getCharacter(getPositionY()+1,getPositionX()) == '='){
+        setPositionY(getPositionY());
+      } else {
+    		  this->setPositionY(getPositionY()+1);
+        }
+
+	} else if (key == 'a'){
+    if(mapa->getCharacter(getPositionY(),getPositionX()-1) == '='){
+      setPositionX(getPositionX());
+    } else {
+  		  this->setPositionX(getPositionX()-1);
+      }
+
+  } else if (key == 'd'){
+    if(mapa->getCharacter(getPositionY(),getPositionX()+1) == '='){
+      setPositionX(getPositionX());
+    } else {
+  		  this->setPositionX(getPositionX()+1);
+      }
+  }
 }
 
-void Player::setNextPositionY(int next_positionY){
-  this->next_positionY = next_positionY;
-}
-
-int Player::getNextPositionX(){
-  return next_positionX;
-}
-
-int Player::getNextPositionY(){
-  return next_positionY;
-}
-
-void Player::movePlayer(){
-
-   while(getch() == 'd'){
-     refresh();
-     clear();
-     mvprintw(getPositionY(), getPositionX(), getSprite());
-     setNextPositionX((getPositionX() + direction));
-     setPositionX(getNextPositionX());
-     if(getNextPositionX() >= 51) {
-       setPositionX((getPositionX() - direction));
-     }
-   }
-
-   while(getch() == 'a'){
-     refresh();
-     clear();
-     mvprintw(getPositionY(), getPositionX(), getSprite());
-     //next_positionX() = getPositionX() - direction;
-     //setPositionX()= next_positionX();
-     setNextPositionX((getPositionX() - direction));
-     setPositionX(getNextPositionX());
-     if(getNextPositionX() < 0) {
-       setPositionX((getPositionX() + direction));
-     }
-
-   }
-
-   while(getch() == 's'){
-     refresh();
-     clear();
-     mvprintw(getPositionY(), getPositionX(), getSprite());
-     //next_positionY() = getPositionY() + direction;
-     //setPositionY()= next_positionY();
-     setNextPositionY((getPositionY() + direction));
-     setPositionY(getNextPositionY());
-   }
-
-   while(getch() == 'w'){
-     refresh();
-     clear();
-     mvprintw(getPositionY(), getPositionX(), getSprite());
-     //next_positionY() = getPositionY() + direction;
-     //setPositionY()= next_positionY();
-     setNextPositionY((getPositionY() - direction));
-     setPositionY(getNextPositionY());
-   }
-}
-
+// Method to set player status
 void Player::setAlive(bool alive){
   this->alive = alive;
 }

@@ -4,7 +4,7 @@
 class GameObject{
   int positionX;
   int positionY;
-  char* sprite;
+  char sprite;
 
 public:
   // Métodos acessores
@@ -14,8 +14,8 @@ public:
   void setPositionY(int positionY);
   int getPositionY();
 
-  void setSprite(char* sprite);
-  char* getSprite();
+  void setSprite(char sprite);
+  char getSprite();
 
 };
 #endif

@@ -1,6 +1,7 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 #include "gameobject.hpp"
+#include "map.hpp"
 #include <ncurses.h>
 #include <unistd.h>
 
@@ -11,8 +12,6 @@ bool alive;
 int score;
 int life;
 bool winner;
-int next_positionX;
-int next_positionY;
 
 public:
 
@@ -22,11 +21,7 @@ public:
 
 
   //Set and Get Methods
-  void setNextPositionX(int next_positionX);
-  int getNextPositionX();
 
-  void setNextPositionY(int next_positionY);
-  int getNextPositionY();
 
   void setLife(int life);
   int getLife();
@@ -41,7 +36,7 @@ public:
    bool getWinner();
 
   //Method to move player
-  void movePlayer();
+  void movePlayer(Map *mapa);
 
 
 };

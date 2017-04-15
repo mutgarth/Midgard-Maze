@@ -23,10 +23,10 @@ int GameObject::getPositionX(){
 }
 
 //Methods to set and get the sprite
-void GameObject::setSprite(char* sprite){
+void GameObject::setSprite(char sprite){
   this->sprite = sprite;
 }
 
-char* GameObject::getSprite(){
+char GameObject::getSprite(){
   return sprite;
 }
