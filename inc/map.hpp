@@ -1,6 +1,5 @@
 #ifndef MAP_HPP
 #define MAP_HPP
-
 #include <iostream>
 #include <string>
 
@@ -11,14 +10,14 @@ private:
 public:
   // Constructor method
   Map();
-  //Method to store map.txt into an array
+
+  // Method to store map.txt into an array
   void importMap();
 
-  //Method to get map to use in Draw class
-
+  // Method to get a specifc character at position x and y
   char getCharacter(int posx, int posy);
-  void getMap();
+  void setCharacter(char sprite, int posx, int posy);
   void drawPlayer(char sprite, int posx, int posy);
-  void getMapArray();
+
 };
 #endif

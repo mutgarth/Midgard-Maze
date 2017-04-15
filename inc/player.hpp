@@ -21,8 +21,6 @@ public:
 
 
   //Set and Get Methods
-
-
   void setLife(int life);
   int getLife();
 

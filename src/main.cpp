@@ -16,22 +16,26 @@ int main(int argc, char** argv) {
   initscr();
   noecho();
 
+  //Instance objects
+  Draw * draw = new Draw();
   Player  * player = new Player();
   Map * mapa = new Map();
-  mapa->importMap();
-  mapa->drawPlayer(player->getSprite(), player->getPositionX(), player->getPositionY());
-  mapa->getMap();
 
+
+  mapa->importMap();
+  draw->drawPlayer(mapa, player->getSprite(), player->getPositionX(), player->getPositionY());
+  draw->drawMap(mapa);
+
+  // Infinite Loop
     while(1){
 
       mapa->importMap();
       player->movePlayer(mapa);
-      mapa->drawPlayer(player->getSprite(), player->getPositionX(), player->getPositionY());
+      draw->drawPlayer(mapa, player->getSprite(), player->getPositionX(), player->getPositionY());
 
       refresh();
       clear();
-      mapa->getMap();
-
+      draw->drawMap(mapa);
 
   }
 

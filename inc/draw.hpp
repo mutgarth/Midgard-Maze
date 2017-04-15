@@ -1,18 +1,15 @@
-// #ifndef DRAW_HPP
-// #define DRAW_HPP
-// #include "map.hpp"
-//
-// class Draw{
-//
-//    char array[20][50];
-//
-// public:
-//   Draw();
-//   // void drawPlayer(char sprite, int positionX, int positionY);
-//   void drawMap();
-//   //void drawPlayer(Player player);
-//   // void drawTrap();
-//   // void drawBonus();
-//
-// };
-// #endif
+#ifndef DRAW_HPP
+#define DRAW_HPP
+#include "map.hpp"
+
+class Draw{
+
+public:
+  // Constructor method
+  Draw();
+
+  // Method to draw thins on the screen
+  void drawMap(Map *mapa);
+  void drawPlayer(Map *mapa, char sprite, int positionX, int positionY);
+};
+#endif

@@ -1,6 +1,6 @@
 #include "map.hpp"
 #include <string>
-#include <iostream> 
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <ncurses.h>
@@ -8,8 +8,10 @@
 
 using namespace std;
 
+// Constructor method
 Map::Map(){}
 
+// Method to read map.txt into array[][]
 void Map::importMap(){
 
 	ifstream map ("/home/lucas/Documents/oo/ep1_game/doc/map.txt");
@@ -25,23 +27,12 @@ void Map::importMap(){
 	map.close();
 }
 
-  void Map::getMap(){
+// Method to get a specifc character at position x and y
+char Map::getCharacter(int posx, int posy){
+	return this->array[posx][posy];
+}
 
-  		for(int i = 0; i < 20; i++){
-  			for(int u = 0; u < 50; u++){
-  		 		printw("%c", this->array[i][u]);
-  		 		if(u >= 49){
-  		 			printw("\n");
-  		 		}
-  		}
-  	}
-	}
-
-	char Map::getCharacter(int posx, int posy){
-		char c = array[posx][posy];
-		return c;
-	}
-
-  void Map::drawPlayer(char sprite, int posx, int posy){
-  	this->array[posy][posx] = sprite;
-  }
+// Method to set a sprite (player, trap or bonus) to a specifc position x and y
+void Map::setCharacter(char sprite, int posx, int posy){
+	this->array[posy][posx] = sprite;
+}
