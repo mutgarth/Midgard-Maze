@@ -1,4 +1,4 @@
-#include "trap.hpp"
+#include "bonus.hpp"
 #include "gameobject.hpp"
 #include <string>
 #include <ncurses.h>
@@ -6,10 +6,12 @@
 #include <cstdlib>
 #include <ctime>
 
-Trap::Trap(){
-  setSprite('O');
+Bonus::Bonus(){
+  setSprite('&');
   setPositionX(rand() % 50);
   setPositionY(rand() % 20);
 }
 
-Trap::~Trap(){}
+Bonus::~Bonus(){
+  setSprite('-');
+}

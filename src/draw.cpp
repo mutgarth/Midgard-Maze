@@ -26,3 +26,7 @@ void Draw::drawPlayer(Map *mapa, char sprite, int posx, int posy){
 void Draw::drawTrap(Map *mapa, char sprite, int posx, int posy){
   mapa->setCharacter(sprite, posx, posy);
 }
+
+void Draw::drawBonus(Map *mapa, char sprite, int posx, int posy){
+  mapa->setCharacter(sprite, posx, posy);
+}

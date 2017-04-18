@@ -7,7 +7,7 @@ class GameObject{
   char sprite;
 
 public:
-  // Métodos acessores
+  // Get and set methods
   void setPositionX(int positionX);
   int getPositionX();
 

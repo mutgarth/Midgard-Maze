@@ -8,9 +8,10 @@ public:
   // Constructor method
   Draw();
 
-  // Method to draw thins on the screen
+  // Methods to draw things on the screen
   void drawMap(Map *mapa);
   void drawPlayer(Map *mapa, char sprite, int positionX, int positionY);
   void drawTrap(Map *mapa, char sprite, int positionX, int positionY);
+  void drawBonus(Map *mapa, char sprite, int positionX, int positionY);
 };
 #endif

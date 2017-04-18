@@ -14,6 +14,7 @@ Player::Player(){
 
 Player::~Player(){};
 
+
 void Player::setLife(int life){
   this->life = life;
 }
@@ -42,12 +43,14 @@ void Player::movePlayer(Map *mapa){
     		  this->setPositionY(getPositionY()+1);
         }
 
+
 	} else if (key == 'a'){
     if(mapa->getCharacter(getPositionY(),getPositionX()-1) == '='){
       setPositionX(getPositionX());
     } else {
   		  this->setPositionX(getPositionX()-1);
       }
+
 
   } else if (key == 'd'){
     if(mapa->getCharacter(getPositionY(),getPositionX()+1) == '='){
