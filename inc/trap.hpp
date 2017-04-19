@@ -12,6 +12,7 @@ public:
   Trap();
   ~Trap();
 
+  void moveTrap(Map *mapa);
 };
 
 #endif

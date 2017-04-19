@@ -13,3 +13,14 @@ Trap::Trap(){
 }
 
 Trap::~Trap(){}
+
+void Trap::moveTrap(Map *mapa){
+
+    setPositionX(rand() % 50);
+    setPositionY(rand() % 20);
+
+  while (mapa->getCharacter(getPositionY(),getPositionX()) == '=' ){
+    setPositionX(rand() % 50);
+    setPositionY(rand() % 20);
+  }
+}

@@ -35,7 +35,7 @@ void Player::movePlayer(Map *mapa){
     } else {
   		  this->setPositionY(getPositionY()-1);
       }
-
+      
     } else if (key == 's'){
       if(mapa->getCharacter(getPositionY()+1,getPositionX()) == '='){
         setPositionY(getPositionY());
