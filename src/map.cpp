@@ -14,7 +14,7 @@ Map::Map(){}
 // Method to read map.txt into array[][]
 void Map::importMap(){
 
-	ifstream map ("/home/lucas/Documents/oo/ep1_game/doc/map.txt");
+	ifstream map ("doc/map.txt");
 
 	string aux;
 

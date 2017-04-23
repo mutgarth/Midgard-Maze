@@ -52,7 +52,7 @@ void Draw::drawPresentation(int SCORE_COND){
 void Draw::drawRank(){
   string aux;
   ifstream rankList;
-  rankList.open("/home/lucas/Documents/oo/ep1_game/doc/rank_list.txt");
+  rankList.open("doc/rank_list.txt");
 
   while (TRUE)
   {
@@ -117,7 +117,7 @@ void Draw::drawFinalMenu(Player *player){
       // getchar();
 
       fstream rankFile;
-      rankFile.open ("/home/lucas/Documents/oo/ep1_game/doc/rank_list.txt", fstream::app);
+      rankFile.open ("doc/rank_list.txt", fstream::app);
       rankFile << name << " ---- " << player->getScore()<< "\r\n";;
       rankFile.close();
 
