@@ -38,7 +38,7 @@ public:
   //Method to move player
   void movePlayer(Map *mapa);
 
-  void WinOrDeath(int SCORE_COND);
+  void WinOrDeath(Map *mapa);
 
   void trapColision(Trap *trap, int TRAP_DAMAGE);
 

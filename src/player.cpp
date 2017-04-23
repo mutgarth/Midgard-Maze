@@ -1,7 +1,12 @@
 #include "player.hpp"
 #include <string>
+#include <iostream>
+#include <fstream>
 #include <ncurses.h>
 #include <unistd.h>
+#include <stdlib.h>
+
+using namespace std;
 
 // Constructor method
 Player::Player(){
@@ -31,14 +36,6 @@ void Player::movePlayer(Map *mapa){
 
   char key;
   key = getch();
-
-  if(mapa->getCharacter(getPositionY(),getPositionX()) == '8'){
-    setWinner(TRUE);
-  }
-
-  if(getLife()<=0){
-    setAlive(FALSE);
-  }
 
   if(key == 'w'){
     if(mapa->getCharacter(getPositionY()-1,getPositionX()) == '='){
@@ -97,22 +94,19 @@ bool Player::getWinner(){
   return winner;
 }
 
-void Player::WinOrDeath(int SCORE_COND){
-  if (getWinner()==TRUE && getScore()>=SCORE_COND){
-    clear();
-    printw("\n");
-    printw("You Win!");
-    printw("\n");
+void Player::WinOrDeath(Map *mapa){
 
-    printw("Your Score: %d", getScore());
-    printw("\n");
-    printw("Enter your Name: ");
+  if(mapa->getCharacter(getPositionY(),getPositionX()) == '8'){
+    setWinner(TRUE);
+  }
 
-  } else if(getAlive()==FALSE){
-    clear();
-    printw("\n");
-    printw("Welcome to Valhalla!");
-    printw("\n");
+  if(getLife()<=0){
+    system("clear");
+    printf("\n");
+    printf(" -------- WELCOME TO VALHALLA ---------- ");
+    getchar();
+    sleep(3);
+    setAlive(FALSE);
   }
 }
 

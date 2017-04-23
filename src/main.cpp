@@ -22,15 +22,17 @@ int main(int argc, char** argv) {
   int TRAP_DAMAGE = 30;   // How many health points player looses due traps
   int SCORE_COND = 0;     // Score Points Condition
 
-
-  srand(time(NULL));
-  initscr();
-  noecho();
-
   // Instantiating objects ----------------------------------------------------------------
-  Draw * draw = new Draw();
   Map * mapa = new Map();
   Player  * player = new Player();
+  Draw * draw = new Draw();
+
+  draw->drawInitialMenu(); // Drawing the initial menu
+
+  srand(time(NULL));
+
+  initscr();
+  noecho();
 
   // List to instantiate N traps and bonus -------------------------------------------------
   Bonus * bonus_list[NUM_BON];
@@ -55,11 +57,12 @@ int main(int argc, char** argv) {
   draw->drawPresentation(SCORE_COND);
 
   // Infinite Loop ----------------------------------------------------------------------------
-    int a = 1;
-    while(a==1){
+    while(player->getWinner()==FALSE && player->getAlive()==TRUE){
 
       mapa->importMap();
       player->movePlayer(mapa);
+      player->WinOrDeath(mapa); // Win or Loose conditions
+
 
       // Drawing traps on the mapa and resolving colisions
       for(int i=0; i<NUM_TRAP; i++){
@@ -84,11 +87,12 @@ int main(int argc, char** argv) {
 
       draw->drawMap(mapa);            // Redrawing the map
       draw->drawStatus(player);       // Player Status
-      player->WinOrDeath(SCORE_COND); // Win or Loose conditions
-
-
     }
-
   endwin();
+
+  if(player->getAlive()==FALSE){
+    return 0;
+  }
+  draw->drawFinalMenu(player);
   return 0;
 }
