@@ -9,29 +9,34 @@
 #include <unistd.h>
 #include <string>
 #include <stdlib.h>
-
+#include <fstream>
 
 using namespace std;
 
 int main(int argc, char** argv) {
 
+  int NUM_BON = 8;        // Bonus quantity in the game
+  int NUM_TRAP = 15;      // Trap quantity in the game
+  int BON_TO_SCORE = 20;  // How many score points are given by bonus
+  int BON_LIFE = 10;      // How many health points are given by bonus
+  int TRAP_DAMAGE = 30;   // How many health points player looses due traps
+  int SCORE_COND = 0;     // Score Points Condition
+
+
   srand(time(NULL));
   initscr();
   noecho();
 
-  // Instantiating objects
+  // Instantiating objects ----------------------------------------------------------------
   Draw * draw = new Draw();
   Map * mapa = new Map();
   Player  * player = new Player();
 
-  // Numbers of bonus in game
-  int NUM_BON = 8;
+  // List to instantiate N traps and bonus -------------------------------------------------
   Bonus * bonus_list[NUM_BON];
-  // Numbers of traps in game
-  int NUM_TRAP = 15;
   Trap * trap_list[NUM_TRAP];
 
-  // Instantiating bonus and trap lists
+  // Instantiating bonus and trap lists ----------------------------------------------------
   for(int i=0; i<NUM_BON;i++){
     bonus_list[i] = new Bonus();
   }
@@ -40,19 +45,18 @@ int main(int argc, char** argv) {
     trap_list[i] = new Trap();
   }
 
-  // Using methods
+  // Using methods ---------------------------------------------------------------------------
   mapa->importMap();
 
   draw->drawPlayer(mapa, player->getSprite(), player->getPositionX(), player->getPositionY());
 
   draw->drawMap(mapa);
 
-  printw("\n");
-  printw("Press any key to start...");
+  draw->drawPresentation(SCORE_COND);
 
-
-  // Infinite Loop
-    while(1){
+  // Infinite Loop ----------------------------------------------------------------------------
+    int a = 1;
+    while(a==1){
 
       mapa->importMap();
       player->movePlayer(mapa);
@@ -61,40 +65,29 @@ int main(int argc, char** argv) {
       for(int i=0; i<NUM_TRAP; i++){
         trap_list[i]->moveTrap(mapa);
         draw->drawTrap(mapa, trap_list[i]->getSprite(), trap_list[i]->getPositionX(), trap_list[i]->getPositionY());
-
-      // Verify if player position is equal to trap position
-        if(player->getPositionX() == trap_list[i]->getPositionX() && player->getPositionY() == trap_list[i]->getPositionY()){
-          player->setLife(player->getLife() - 30);
-        }
-      }
+        player->trapColision(trap_list[i],TRAP_DAMAGE); // Verify if player position is equal to trap position
+  }
 
       // Drawing bonus on the map and resolving colisions
       for(int i=0; i<NUM_BON; i++){
         bonus_list[i]->moveBonus(mapa);
         draw->drawBonus(mapa, bonus_list[i]->getSprite(), bonus_list[i]->getPositionX(), bonus_list[i]->getPositionY());
+        player->bonusColision(bonus_list[i], BON_LIFE, BON_TO_SCORE);   // Verify if player position is equal to bonus position
 
-      // Verify if player position is equal to bonus position
-        if(player->getPositionX() == bonus_list[i]->getPositionX() && player->getPositionY() == bonus_list[i]->getPositionY()){
-          player->setLife(player->getLife() + 10);
-          bonus_list[i]->~Bonus();
-          bonus_list[i] = new Bonus();
-        }
       }
 
-      // The last element to draw is player
+      // Drawing player
       draw->drawPlayer(mapa, player->getSprite(), player->getPositionX(), player->getPositionY());
 
       refresh();
       clear();
 
-      // Redrawing the map
-      draw->drawMap(mapa);
+      draw->drawMap(mapa);            // Redrawing the map
+      draw->drawStatus(player);       // Player Status
+      player->WinOrDeath(SCORE_COND); // Win or Loose conditions
 
-      // Player Status
-      printw("\n");
-      printw("Health Points: %d", player->getLife());
 
-  }
+    }
 
   endwin();
   return 0;

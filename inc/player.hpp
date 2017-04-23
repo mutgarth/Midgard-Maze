@@ -2,6 +2,8 @@
 #define PLAYER_HPP
 #include "gameobject.hpp"
 #include "map.hpp"
+#include "trap.hpp"
+#include "bonus.hpp"
 #include <ncurses.h>
 #include <unistd.h>
 
@@ -35,6 +37,12 @@ public:
 
   //Method to move player
   void movePlayer(Map *mapa);
+
+  void WinOrDeath(int SCORE_COND);
+
+  void trapColision(Trap *trap, int TRAP_DAMAGE);
+
+  void bonusColision(Bonus *bonus, int BON_LIFE, int BON_TO_SCORE);
 
 
 };
