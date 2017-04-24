@@ -32,17 +32,32 @@ void Draw::drawBonus(Map *mapa, char sprite, int posx, int posy){
   mapa->setCharacter(sprite, posx, posy);
 }
 
-void Draw::drawStatus(Player *player){
+
+void Draw::drawStatus(Player *player, int SCORE_COND){
   printw("\n");
   printw("HP: %d", player->getLife());
   printw("\n");
   printw("Score: %d",player->getScore());
   printw("\n");
+  int stillPoints = SCORE_COND - player->getScore();
+
+  if(stillPoints>0){
+    printw("More %d points to open the 'g8' ", stillPoints);
+    printw("\n");
+    printw("\n");
+
+  } else {
+    printw("GO! You can pass through the gates!", stillPoints);
+    printw("\n");
+    printw("\n");
+
+  }
+
 }
 
 void Draw::drawPresentation(int SCORE_COND){
   printw("\n");
-  printw("Get %d bonus points or more to pass through the exit.", SCORE_COND);
+  printw("Get %d bonus points or more to pass through the 'g8'.", SCORE_COND);
   printw("\n");
   printw("\n");
   printw("Press any key to start...");

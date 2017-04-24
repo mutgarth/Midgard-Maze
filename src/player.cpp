@@ -94,9 +94,9 @@ bool Player::getWinner(){
   return winner;
 }
 
-void Player::WinOrDeath(Map *mapa){
+void Player::WinOrDeath(Map *mapa, int SCORE_COND){
 
-  if(mapa->getCharacter(getPositionY(),getPositionX()) == '8'){
+  if(mapa->getCharacter(getPositionY(),getPositionX()) == '8' && getScore() >= SCORE_COND){
     setWinner(TRUE);
   }
 

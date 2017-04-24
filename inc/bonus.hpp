@@ -12,7 +12,7 @@ public:
   Bonus();
   ~Bonus();
 
-// Method to move out bonus from wall 
+// Method to move out bonus from wall
 void moveBonus(Map *mapa);
 
 };

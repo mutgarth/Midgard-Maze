@@ -19,10 +19,11 @@ public:
   void drawPlayer(Map *mapa, char sprite, int positionX, int positionY);
   void drawTrap(Map *mapa, char sprite, int positionX, int positionY);
   void drawBonus(Map *mapa, char sprite, int positionX, int positionY);
-  void drawStatus(Player *player);
+  void drawStatus(Player *player, int SCORE_COND);
   void drawPresentation(int SCORE_COND);
   void drawRank();
   void drawInitialMenu();
   void drawFinalMenu(Player *player);
+
 };
 #endif

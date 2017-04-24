@@ -1,2 +1,6 @@
 Lucas The First ---- 80
 Meneses The Human ---- 200
+Silva ---- 100
+Meneses The Wizard ---- 100
+The Gates ---- 40
+Bandeira ---- 160

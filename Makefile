@@ -4,7 +4,7 @@ CFLAGS := -Wall
 SRCFILES := $(wildcard src/*.cpp)
 
 all: $(SRCFILES:src/%.cpp=obj/%.o)
-	$(CC) $(CFLAGS) obj/*.o -o bin/saida -lncurses
+	$(CC) $(CFLAGS) obj/*.o -o bin/midgard_maze -lncurses
 
 obj/%.o : src/%.cpp
 	$(CC) $(CFLAGS) -c $< -o $@ -I./inc
@@ -15,4 +15,4 @@ clean:
 	rm -rf bin/*
 
 run:
-	bin/saida
+	bin/midgard_maze

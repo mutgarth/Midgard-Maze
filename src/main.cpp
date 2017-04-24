@@ -19,17 +19,16 @@ int main(int argc, char** argv) {
   int NUM_TRAP = 15;      // Trap quantity in the game
   int BON_TO_SCORE = 20;  // How many score points are given by bonus
   int BON_LIFE = 10;      // How many health points are given by bonus
-  int TRAP_DAMAGE = 30;   // How many health points player looses due traps
-  int SCORE_COND = 0;     // Score Points Condition
+  int TRAP_DAMAGE = 20;   // How many health points player looses due traps
+  int SCORE_COND = 100;     // Score Points Condition
 
   // Instantiating objects ----------------------------------------------------------------
   Map * mapa = new Map();
   Player  * player = new Player();
   Draw * draw = new Draw();
-
   draw->drawInitialMenu(); // Drawing the initial menu
 
-  srand(time(NULL));
+  srand(time(NULL)); // Generate real random positions for the elements
 
   initscr();
   noecho();
@@ -47,6 +46,7 @@ int main(int argc, char** argv) {
     trap_list[i] = new Trap();
   }
 
+
   // Using methods ---------------------------------------------------------------------------
   mapa->importMap();
 
@@ -61,8 +61,7 @@ int main(int argc, char** argv) {
 
       mapa->importMap();
       player->movePlayer(mapa);
-      player->WinOrDeath(mapa); // Win or Loose conditions
-
+      player->WinOrDeath(mapa, SCORE_COND); // Win or Loose conditions
 
       // Drawing traps on the mapa and resolving colisions
       for(int i=0; i<NUM_TRAP; i++){
@@ -76,7 +75,6 @@ int main(int argc, char** argv) {
         bonus_list[i]->moveBonus(mapa);
         draw->drawBonus(mapa, bonus_list[i]->getSprite(), bonus_list[i]->getPositionX(), bonus_list[i]->getPositionY());
         player->bonusColision(bonus_list[i], BON_LIFE, BON_TO_SCORE);   // Verify if player position is equal to bonus position
-
       }
 
       // Drawing player
@@ -85,8 +83,8 @@ int main(int argc, char** argv) {
       refresh();
       clear();
 
-      draw->drawMap(mapa);            // Redrawing the map
-      draw->drawStatus(player);       // Player Status
+      draw->drawMap(mapa);                        // Redrawing the map
+      draw->drawStatus(player, SCORE_COND);       // Player Status
     }
   endwin();
 
