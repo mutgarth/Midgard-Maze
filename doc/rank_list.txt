@@ -4,3 +4,4 @@ Silva ---- 100
 Meneses The Wizard ---- 100
 The Gates ---- 40
 Bandeira ---- 160
+Leticia  ---- 140

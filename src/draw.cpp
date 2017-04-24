@@ -35,10 +35,10 @@ void Draw::drawBonus(Map *mapa, char sprite, int posx, int posy){
 
 void Draw::drawStatus(Player *player, int SCORE_COND){
   printw("\n");
-  printw("HP: %d", player->getLife());
+  printw("HP: %d ------------ Score: %d", player->getLife(), player->getScore());
   printw("\n");
-  printw("Score: %d",player->getScore());
-  printw("\n");
+  // printw("Score: %d",player->getScore());
+  // printw("\n");
   int stillPoints = SCORE_COND - player->getScore();
 
   if(stillPoints>0){
