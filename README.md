@@ -19,17 +19,9 @@
 
 ### Installing ncurses on Mac OS
 
-   curl -O ftp://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz
-   tar -xzvf ncurses-5.9.tar.gz
-   cd ./ncurses-5.9
-   ./configure --prefix=/usr/local \
-  --without-cxx --without-cxx-binding --without-ada --without-progs --without-curses-h \
-  --with-shared --without-debug \
-  --enable-widec --enable-const --enable-ext-colors --enable-sigwinch --enable-wgetch-events \
-  && make
-   sudo make install
+  Please refer to this link: https://gist.github.com/cnruby/960344
 
-### Installing ncurses on Linux
+### Installing ncurses on Debian based systems
 
   sudo apt-get install libncurses5-dev libncursesw5-dev
 
