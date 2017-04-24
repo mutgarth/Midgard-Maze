@@ -12,6 +12,7 @@ public:
   Trap();
   ~Trap();
 
+  // This method will move the trap when traps are created in wall location
   void moveTrap(Map *mapa);
 };
 

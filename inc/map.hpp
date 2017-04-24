@@ -17,7 +17,6 @@ public:
   // Method to get a specifc character at position x and y
   char getCharacter(int posx, int posy);
   void setCharacter(char sprite, int posx, int posy);
-  void drawPlayer(char sprite, int posx, int posy);
 
 };
 #endif

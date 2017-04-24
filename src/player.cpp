@@ -100,6 +100,7 @@ void Player::WinOrDeath(Map *mapa, int SCORE_COND){
     setWinner(TRUE);
   }
 
+  // If the player dies, the follow menssage will be printed
   if(getLife()<=0){
     system("clear");
     printf("\n");

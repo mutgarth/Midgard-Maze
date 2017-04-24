@@ -95,6 +95,7 @@ void Draw::drawInitialMenu(){
     cout << "                     Your option: " ;
     cin >> option;
 
+    // This loop accept only int entry by the user
       while(option != 1 && option != 2 ){
         cout << "              Please insert a valid option: ";
         cin >> option;
@@ -120,6 +121,7 @@ void Draw::drawInitialMenu(){
       }
 }
 
+// This method will print the last menu of the game
 void Draw::drawFinalMenu(Player *player){
 
       system("clear");
@@ -129,15 +131,14 @@ void Draw::drawFinalMenu(Player *player){
       cout << "What's your name? : ";
       string name;
       getline(cin,name);
-      // getchar();
 
+        // Use fstream::app argument to write names side by side
       fstream rankFile;
       rankFile.open ("doc/rank_list.txt", fstream::app);
       rankFile << name << " ---- " << player->getScore()<< "\r\n";;
       rankFile.close();
 
     system("clear");
-    // getchar();
     cout << "--------- WHAT WOULD YOU LIKE TO DO NOW WARRIOR? -------" << endl<<endl;
     cout << "               1) Check Rank " << endl;
     cout << "               2) Quit  game." << endl << endl;

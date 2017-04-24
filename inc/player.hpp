@@ -38,11 +38,13 @@ public:
   //Method to move player
   void movePlayer(Map *mapa);
 
-
+  // Method to verify if the player won or died
   void WinOrDeath(Map *mapa, int SCORE_COND);
 
+  //Method to resolve colisions between player and traps
   void trapColision(Trap *trap, int TRAP_DAMAGE);
 
+  //Method to resolve colisions between player and bonus
   void bonusColision(Bonus *bonus, int BON_LIFE, int BON_TO_SCORE);
 
 };
